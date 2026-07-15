@@ -23,21 +23,13 @@ export function useProcessingQueue(userId: string | null, folderId?: string | nu
     queued: 0, processing: 0, completed: 0, failed: 0, total: 0,
     estimatedCost: 0, isRunning: false, globalProcessing: 0,
   });
-  const [configName, setConfigName] = useState<string>('');
-
   const isRunningRef = useRef(false);
-  const configNameRef = useRef('');
   const folderIdRef = useRef(folderId);
   const activeDrivesRef = useRef<Set<string>>(new Set());
   const processNextLockRef = useRef(false);
   const supabase = createClient();
 
   useEffect(() => { folderIdRef.current = folderId; }, [folderId]);
-
-  const updateConfigName = useCallback((name: string) => {
-    setConfigName(name);
-    configNameRef.current = name;
-  }, []);
 
   const refreshCounts = useCallback(async () => {
     if (!userId) return;
@@ -68,7 +60,7 @@ export function useProcessingQueue(userId: string | null, folderId?: string | nu
    * Drive a single article through all 7 phases sequentially.
    * Each phase is a separate HTTP call (~30-120s each).
    */
-  const driveArticle = useCallback(async (articleId: string, cfgName: string, startPhase = 1) => {
+  const driveArticle = useCallback(async (articleId: string, startPhase = 1) => {
     if (activeDrivesRef.current.has(articleId)) return;
     activeDrivesRef.current.add(articleId);
 
@@ -79,11 +71,7 @@ export function useProcessingQueue(userId: string | null, folderId?: string | nu
         const res = await fetch('/api/process-article', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            articleId,
-            phase,
-            configName: cfgName === 'default' ? '' : cfgName,
-          }),
+          body: JSON.stringify({ articleId, phase }),
         });
 
         if (!res.ok) {
@@ -121,7 +109,6 @@ export function useProcessingQueue(userId: string | null, folderId?: string | nu
 
       const slotsAvailable = MAX_CONCURRENT - activeCount;
       const currentFolder = folderIdRef.current;
-      const cfgName = configNameRef.current || 'default';
 
       // 1. Pick up queued articles
       let queuedQuery = supabase.from('articles').select('id')
@@ -157,8 +144,8 @@ export function useProcessingQueue(userId: string | null, folderId?: string | nu
       // Start queued articles from phase 1
       for (const article of (queued || [])) {
         if (activeDrivesRef.current.size >= MAX_CONCURRENT) break;
-        await supabase.from('articles').update({ pipeline_config: cfgName }).eq('id', article.id);
-        driveArticle(article.id, cfgName, 1);
+        await supabase.from('articles').update({ pipeline_config: 'default' }).eq('id', article.id);
+        driveArticle(article.id, 1);
       }
 
       // Resume processing articles from their next phase
@@ -166,7 +153,7 @@ export function useProcessingQueue(userId: string | null, folderId?: string | nu
         if (activeDrivesRef.current.size >= MAX_CONCURRENT) break;
         const resumePhase = getResumePhase(article as Record<string, unknown>);
         if (resumePhase <= TOTAL_PHASES) {
-          driveArticle(article.id, cfgName, resumePhase);
+          driveArticle(article.id, resumePhase);
         }
       }
 
@@ -232,5 +219,5 @@ export function useProcessingQueue(userId: string | null, folderId?: string | nu
     return () => clearInterval(interval);
   }, [state.isRunning, refreshCounts, processNext]);
 
-  return { ...state, startQueue, stopQueue, refreshCounts, configName, setConfigName: updateConfigName };
+  return { ...state, startQueue, stopQueue, refreshCounts };
 }

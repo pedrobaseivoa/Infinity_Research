@@ -390,11 +390,6 @@ export default function ArticlesManager({ initialArticles, initialFolders, userI
                                     {article.status === 'processing' && article.current_phase && (
                                         <span className="text-[10px] text-blue-400 bg-blue-900/30 px-1.5 py-0.5 rounded shrink-0">Phase {article.current_phase}/7</span>
                                     )}
-                                    {article.status === 'completed' && (article.pipeline_config || article.phase7_json?.output?._processing?.config_name) && (
-                                        <span className="text-[10px] text-gray-500 bg-gray-800 px-1.5 py-0.5 rounded shrink-0">
-                                            {(article.pipeline_config || article.phase7_json?.output?._processing?.config_name || 'default').replace(/_/g, ' ')}
-                                        </span>
-                                    )}
                                     {getArticleReviewers(article.id).length > 0 && (
                                         <span className="inline-flex items-center gap-0.5 shrink-0">
                                             {getArticleReviewers(article.id).map(r => (

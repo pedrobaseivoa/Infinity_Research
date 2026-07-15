@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { callOpenRouter, fetchPdfAsBase64 } from '@/lib/processing/openrouter-client';
-import { PIPELINE_CONFIG, VALIDATION_CONFIGS, resolveModel, resolvePhase4Models } from '@/lib/processing/models';
+import { PIPELINE_CONFIG, resolveModel, resolvePhase4Models } from '@/lib/processing/models';
 import type { PipelineOverride } from '@/lib/processing/models';
 import { PHASE1_SCHEMA, PHASE3_SCHEMA, PHASE4_SCHEMA, PHASE5_SCHEMA, PHASE6_SCHEMA } from '@/lib/processing/schemas';
 
@@ -1062,11 +1062,7 @@ export async function POST(request: NextRequest) {
     try {
         const body = await request.json();
         articleId = body.articleId;
-        const configName: string | undefined = body.configName;
-        const configOverride: PipelineOverride | undefined =
-            body.pipelineConfig ||
-            (configName && VALIDATION_CONFIGS[configName]) ||
-            undefined;
+        const configOverride: PipelineOverride | undefined = body.pipelineConfig || undefined;
 
         if (!articleId) return NextResponse.json({ error: 'Missing articleId' }, { status: 400 });
 
