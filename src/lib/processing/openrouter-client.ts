@@ -31,7 +31,7 @@ const MODEL_PRICING: Record<string, { input: number; output: number }> = {
   'google/gemini-3-flash-preview': { input: 0.5, output: 3 },
   'anthropic/claude-haiku-4.5': { input: 1, output: 5 },
   'openai/gpt-4.1-mini': { input: 0.4, output: 1.6 },
-  'x-ai/grok-4.1-fast': { input: 0.2, output: 0.5 },
+  'x-ai/grok-4.3': { input: 0.2, output: 0.5 },
   'google/gemini-3.1-pro-preview': { input: 2, output: 12 },
   'deepseek/deepseek-v3.2': { input: 0.25, output: 0.4 },
 };

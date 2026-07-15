@@ -26,7 +26,7 @@ export const PIPELINE_CONFIG = {
         'google/gemini-3-flash-preview',
         'anthropic/claude-haiku-4.5',
         'openai/gpt-4.1-mini',
-        'x-ai/grok-4.1-fast',
+        'x-ai/grok-4.3',
       ] as const,
       requiresPdf: true,
       description: 'Parallel scientific extraction by 4 independent models',
@@ -81,7 +81,7 @@ export const VALIDATION_CONFIGS: Record<string, PipelineOverride> = {
     phases: {
       1: { model: 'openai/gpt-4o' },
       3: { model: 'meta-llama/llama-4-maverick' },
-      4: { models: ['google/gemini-3-flash-preview', 'anthropic/claude-haiku-4.5', 'openai/gpt-4.1-mini', 'x-ai/grok-4.1-fast'] },
+      4: { models: ['google/gemini-3-flash-preview', 'anthropic/claude-haiku-4.5', 'openai/gpt-4.1-mini', 'x-ai/grok-4.3'] },
       5: { model: 'google/gemini-3.1-pro-preview' },
       6: { model: 'google/gemini-3-flash-preview' },
     },
@@ -125,7 +125,7 @@ export const VALIDATION_CONFIGS: Record<string, PipelineOverride> = {
     phases: {
       1: { model: 'google/gemini-2.5-flash-lite' },
       3: { model: 'deepseek/deepseek-v3.2' },
-      4: { models: ['openai/gpt-5.4-nano', 'google/gemini-2.0-flash-001', 'x-ai/grok-4.1-fast', 'google/gemini-3.1-flash-lite-preview'] },
+      4: { models: ['openai/gpt-5.4-nano', 'google/gemini-2.0-flash-001', 'x-ai/grok-4.3', 'google/gemini-3.1-flash-lite-preview'] },
       5: { model: 'google/gemini-2.5-flash' },
       6: { model: 'google/gemini-2.5-flash' },
     },
