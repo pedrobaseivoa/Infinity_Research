@@ -1,9 +1,23 @@
 import { createServerClient } from '@supabase/ssr'
+import { createClient } from '@supabase/supabase-js'
 import { NextResponse, type NextRequest } from 'next/server'
+
+// Single-user, self-hosted mode.
+// There is no login screen: whoever can reach this app is the "owner".
+// This proxy (Next.js middleware convention) guarantees an authenticated owner
+// session on every request, so Row Level Security (scoped to auth.uid()) keeps
+// working unchanged.
+//
+// SECURITY: because there is no login, access control is entirely network-level.
+// Only run this behind localhost or a private network you control. Do not expose
+// it to the public internet without putting your own auth/proxy in front of it.
+
+const OWNER_EMAIL = process.env.OWNER_EMAIL || 'owner@infinity.local'
+const OWNER_PASSWORD = process.env.OWNER_PASSWORD || 'infinity-self-hosted-owner'
+
 export async function proxy(request: NextRequest) {
-    let supabaseResponse = NextResponse.next({
-        request,
-    })
+    let response = NextResponse.next({ request })
+
     const supabase = createServerClient(
         process.env.NEXT_PUBLIC_SUPABASE_URL!,
         process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -13,39 +27,46 @@ export async function proxy(request: NextRequest) {
                     return request.cookies.getAll()
                 },
                 setAll(cookiesToSet) {
-                    cookiesToSet.forEach(({ name, value }) =>
-                        request.cookies.set(name, value)
-                    )
-                    supabaseResponse = NextResponse.next({
-                        request,
-                    })
+                    cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value))
+                    response = NextResponse.next({ request })
                     cookiesToSet.forEach(({ name, value, options }) =>
-                        supabaseResponse.cookies.set(name, value, options)
+                        response.cookies.set(name, value, options)
                     )
                 },
             },
         }
     )
-    // Refresh session if expired
+
     const { data: { user } } = await supabase.auth.getUser()
-    // Protect routes - redirect to login if not authenticated
-    const protectedRoutes = ['/dashboard', '/settings', '/upload', '/article']
-    const isProtectedRoute = protectedRoutes.some(route =>
-        request.nextUrl.pathname.startsWith(route)
-    )
-    if (isProtectedRoute && !user) {
-        const url = request.nextUrl.clone()
-        url.pathname = '/login'
-        return NextResponse.redirect(url)
+
+    if (!user) {
+        // No session yet — sign in as the owner (create it on first run).
+        const { error } = await supabase.auth.signInWithPassword({
+            email: OWNER_EMAIL,
+            password: OWNER_PASSWORD,
+        })
+
+        if (error) {
+            const admin = createClient(
+                process.env.NEXT_PUBLIC_SUPABASE_URL!,
+                process.env.SUPABASE_SERVICE_ROLE_KEY!,
+                { auth: { autoRefreshToken: false, persistSession: false } }
+            )
+            await admin.auth.admin.createUser({
+                email: OWNER_EMAIL,
+                password: OWNER_PASSWORD,
+                email_confirm: true,
+            })
+            await supabase.auth.signInWithPassword({
+                email: OWNER_EMAIL,
+                password: OWNER_PASSWORD,
+            })
+        }
     }
-    // Redirect logged-in users away from login page
-    if (request.nextUrl.pathname === '/login' && user) {
-        const url = request.nextUrl.clone()
-        url.pathname = '/dashboard'
-        return NextResponse.redirect(url)
-    }
-    return supabaseResponse
+
+    return response
 }
+
 export const config = {
     matcher: [
         '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',

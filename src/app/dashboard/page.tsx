@@ -69,9 +69,6 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
                         )}
                         <Link href="/metrics" className="px-3 py-1.5 text-sm text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg transition-colors">Metrics</Link>
                         <Link href="/settings" className="px-3 py-1.5 text-sm text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg transition-colors">Settings</Link>
-                        <form action="/api/auth/signout" method="post">
-                            <button type="submit" className="px-3 py-1.5 text-sm text-gray-500 hover:text-white hover:bg-gray-800 rounded-lg transition-colors">Sign out</button>
-                        </form>
                     </div>
                 </div>
             </header>

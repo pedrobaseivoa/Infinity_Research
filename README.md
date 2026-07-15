@@ -81,10 +81,13 @@ Fill in the Supabase values (Project Settings → API):
 ```bash
 npm run dev
 ```
-Open http://localhost:3000, create an account, then go to **Settings** and paste your **OpenRouter API key**. Now upload PDFs and process them.
+Open http://localhost:3000 — **there is no login screen**. This is a single-user, self-hosted app: the first visit automatically signs you in as the owner (configured via `OWNER_EMAIL` / `OWNER_PASSWORD`). Just go to **Settings**, paste your **OpenRouter API key**, then upload PDFs and process them.
+
+> [!IMPORTANT]
+> Because there is no login, access control is entirely network-level — anyone who can reach the app is the owner. Only run it on localhost or a private network you control. If you deploy it somewhere reachable, put your own authentication/proxy in front of it.
 
 ### 6. Deploy (optional)
-Deploy to [Vercel](https://vercel.com), setting the same environment variables in the project settings. Point it at your Supabase project and you're live.
+Deploy to [Vercel](https://vercel.com), setting the same environment variables in the project settings. Point it at your Supabase project and you're live. (See the security note above before exposing it publicly.)
 
 ---
 
