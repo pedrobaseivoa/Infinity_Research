@@ -16,7 +16,7 @@ export const PIPELINE_CONFIG = {
     },
     3: {
       name: 'Consensus Validation',
-      model: 'meta-llama/llama-4-maverick',
+      model: 'anthropic/claude-haiku-4.5',
       requiresPdf: false,
       description: 'Reconcile AI-extracted metadata with API data into Golden Record',
     },
@@ -24,7 +24,7 @@ export const PIPELINE_CONFIG = {
       name: 'Multi-Model Extraction',
       models: [
         'google/gemini-3-flash-preview',
-        'anthropic/claude-haiku-4.5',
+        'deepseek/deepseek-v3.2',
         'openai/gpt-4.1-mini',
         'x-ai/grok-4.3',
       ] as const,
