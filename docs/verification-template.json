@@ -1,0 +1,147 @@
+{
+  "_instructions": {
+    "purpose": "Manual verification template for the validation study. For each article, score the pipeline output against the original PDF.",
+    "scoring": {
+      "3": "Correct and complete",
+      "2": "Correct but incomplete (missing some detail)",
+      "1": "Partially correct (has errors but core info present)",
+      "0": "Wrong, fabricated, or missing"
+    },
+    "procedure": [
+      "1. Open the original PDF alongside the pipeline output",
+      "2. For each field, compare the extracted value against the source",
+      "3. Assign a score (0-3) for each field",
+      "4. Add notes for any discrepancies, hallucinations, or interesting observations",
+      "5. Score Phase 7 (consolidated) AND individual Phase 4 model outputs separately"
+    ]
+  },
+  "articles": [
+    {
+      "article_id": "",
+      "pdf_filename": "",
+      "title": "",
+      "configs": {
+        "A_baseline": {
+          "phase7_consolidated": {
+            "metadata": {
+              "title": { "score": null, "notes": "" },
+              "authors": { "score": null, "notes": "" },
+              "doi": { "score": null, "notes": "" },
+              "journal": { "score": null, "notes": "" },
+              "year": { "score": null, "notes": "" },
+              "pmid": { "score": null, "notes": "" },
+              "study_type": { "score": null, "notes": "" }
+            },
+            "scientific": {
+              "methodology": { "score": null, "notes": "" },
+              "sample_size": { "score": null, "notes": "" },
+              "population": { "score": null, "notes": "" },
+              "intervention": { "score": null, "notes": "" },
+              "control": { "score": null, "notes": "" },
+              "primary_outcomes": { "score": null, "notes": "" },
+              "secondary_outcomes": { "score": null, "notes": "" },
+              "main_results": { "score": null, "notes": "" },
+              "limitations": { "score": null, "notes": "" },
+              "conclusions": { "score": null, "notes": "" }
+            }
+          },
+          "phase4_individual_models": [
+            {
+              "model": "",
+              "fields": {
+                "methodology": { "score": null, "notes": "" },
+                "sample_size": { "score": null, "notes": "" },
+                "population": { "score": null, "notes": "" },
+                "intervention": { "score": null, "notes": "" },
+                "control": { "score": null, "notes": "" },
+                "primary_outcomes": { "score": null, "notes": "" },
+                "secondary_outcomes": { "score": null, "notes": "" },
+                "main_results": { "score": null, "notes": "" },
+                "limitations": { "score": null, "notes": "" },
+                "conclusions": { "score": null, "notes": "" }
+              }
+            }
+          ]
+        },
+        "B_single_model": {
+          "phase7_consolidated": {
+            "metadata": {
+              "title": { "score": null, "notes": "" },
+              "authors": { "score": null, "notes": "" },
+              "doi": { "score": null, "notes": "" },
+              "journal": { "score": null, "notes": "" },
+              "year": { "score": null, "notes": "" },
+              "pmid": { "score": null, "notes": "" },
+              "study_type": { "score": null, "notes": "" }
+            },
+            "scientific": {
+              "methodology": { "score": null, "notes": "" },
+              "sample_size": { "score": null, "notes": "" },
+              "population": { "score": null, "notes": "" },
+              "intervention": { "score": null, "notes": "" },
+              "control": { "score": null, "notes": "" },
+              "primary_outcomes": { "score": null, "notes": "" },
+              "secondary_outcomes": { "score": null, "notes": "" },
+              "main_results": { "score": null, "notes": "" },
+              "limitations": { "score": null, "notes": "" },
+              "conclusions": { "score": null, "notes": "" }
+            }
+          },
+          "phase4_individual_models": []
+        },
+        "C_nextgen_auto": {
+          "phase7_consolidated": {
+            "metadata": {
+              "title": { "score": null, "notes": "" },
+              "authors": { "score": null, "notes": "" },
+              "doi": { "score": null, "notes": "" },
+              "journal": { "score": null, "notes": "" },
+              "year": { "score": null, "notes": "" },
+              "pmid": { "score": null, "notes": "" },
+              "study_type": { "score": null, "notes": "" }
+            },
+            "scientific": {
+              "methodology": { "score": null, "notes": "" },
+              "sample_size": { "score": null, "notes": "" },
+              "population": { "score": null, "notes": "" },
+              "intervention": { "score": null, "notes": "" },
+              "control": { "score": null, "notes": "" },
+              "primary_outcomes": { "score": null, "notes": "" },
+              "secondary_outcomes": { "score": null, "notes": "" },
+              "main_results": { "score": null, "notes": "" },
+              "limitations": { "score": null, "notes": "" },
+              "conclusions": { "score": null, "notes": "" }
+            }
+          },
+          "phase4_individual_models": []
+        },
+        "D_budget_ensemble": {
+          "phase7_consolidated": {
+            "metadata": {
+              "title": { "score": null, "notes": "" },
+              "authors": { "score": null, "notes": "" },
+              "doi": { "score": null, "notes": "" },
+              "journal": { "score": null, "notes": "" },
+              "year": { "score": null, "notes": "" },
+              "pmid": { "score": null, "notes": "" },
+              "study_type": { "score": null, "notes": "" }
+            },
+            "scientific": {
+              "methodology": { "score": null, "notes": "" },
+              "sample_size": { "score": null, "notes": "" },
+              "population": { "score": null, "notes": "" },
+              "intervention": { "score": null, "notes": "" },
+              "control": { "score": null, "notes": "" },
+              "primary_outcomes": { "score": null, "notes": "" },
+              "secondary_outcomes": { "score": null, "notes": "" },
+              "main_results": { "score": null, "notes": "" },
+              "limitations": { "score": null, "notes": "" },
+              "conclusions": { "score": null, "notes": "" }
+            }
+          },
+          "phase4_individual_models": []
+        }
+      }
+    }
+  ]
+}

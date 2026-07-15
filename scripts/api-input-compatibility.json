@@ -1,0 +1,298 @@
+{
+  "testData": {
+    "title": "Attention is all you need",
+    "doi": "10.48550/arXiv.1706.03762",
+    "author": "Vaswani A",
+    "year": 2017
+  },
+  "matrix": {
+    "pubmed": {
+      "title": true,
+      "doi": true,
+      "author": true
+    },
+    "openalex": {
+      "title": true,
+      "doi": false,
+      "author": true
+    },
+    "crossref": {
+      "title": true,
+      "doi": false,
+      "author": true
+    },
+    "semantic_scholar": {
+      "title": true,
+      "doi": false,
+      "author": false
+    },
+    "europe_pmc": {
+      "title": true,
+      "doi": false,
+      "author": true
+    },
+    "arxiv": {
+      "title": true,
+      "doi": true,
+      "author": true
+    },
+    "datacite": {
+      "title": true,
+      "doi": true,
+      "author": true
+    },
+    "unpaywall": {
+      "title": false,
+      "doi": false,
+      "author": false
+    },
+    "doaj": {
+      "title": true,
+      "doi": false,
+      "author": true
+    },
+    "orcid": {
+      "title": false,
+      "doi": false,
+      "author": true
+    },
+    "core": {
+      "title": true,
+      "doi": true,
+      "author": true
+    }
+  },
+  "details": [
+    {
+      "api": "pubmed",
+      "inputType": "title",
+      "input": "Attention is all you need",
+      "success": true,
+      "time": 749
+    },
+    {
+      "api": "pubmed",
+      "inputType": "doi",
+      "input": "10.48550/arXiv.1706.03762",
+      "success": true,
+      "time": 240
+    },
+    {
+      "api": "pubmed",
+      "inputType": "author",
+      "input": "Vaswani A",
+      "success": true,
+      "time": 513
+    },
+    {
+      "api": "openalex",
+      "inputType": "title",
+      "input": "Attention is all you need",
+      "success": true,
+      "time": 809
+    },
+    {
+      "api": "openalex",
+      "inputType": "doi",
+      "input": "10.48550/arXiv.1706.03762",
+      "success": false,
+      "time": 286
+    },
+    {
+      "api": "openalex",
+      "inputType": "author",
+      "input": "Vaswani A",
+      "success": true,
+      "time": 538
+    },
+    {
+      "api": "crossref",
+      "inputType": "title",
+      "input": "Attention is all you need",
+      "success": true,
+      "time": 793
+    },
+    {
+      "api": "crossref",
+      "inputType": "doi",
+      "input": "10.48550/arXiv.1706.03762",
+      "success": false,
+      "time": 223
+    },
+    {
+      "api": "crossref",
+      "inputType": "author",
+      "input": "Vaswani A",
+      "success": true,
+      "time": 473
+    },
+    {
+      "api": "semantic_scholar",
+      "inputType": "title",
+      "input": "Attention is all you need",
+      "success": true,
+      "time": 1552
+    },
+    {
+      "api": "semantic_scholar",
+      "inputType": "doi",
+      "input": "10.48550/arXiv.1706.03762",
+      "success": false,
+      "time": 295
+    },
+    {
+      "api": "semantic_scholar",
+      "inputType": "author",
+      "input": "Vaswani A",
+      "success": false,
+      "time": 229
+    },
+    {
+      "api": "europe_pmc",
+      "inputType": "title",
+      "input": "Attention is all you need",
+      "success": true,
+      "time": 1014
+    },
+    {
+      "api": "europe_pmc",
+      "inputType": "doi",
+      "input": "10.48550/arXiv.1706.03762",
+      "success": false,
+      "time": 845
+    },
+    {
+      "api": "europe_pmc",
+      "inputType": "author",
+      "input": "Vaswani A",
+      "success": true,
+      "time": 301
+    },
+    {
+      "api": "arxiv",
+      "inputType": "title",
+      "input": "Attention is all you need",
+      "success": true,
+      "time": 876
+    },
+    {
+      "api": "arxiv",
+      "inputType": "doi",
+      "input": "10.48550/arXiv.1706.03762",
+      "success": true,
+      "time": 309
+    },
+    {
+      "api": "arxiv",
+      "inputType": "author",
+      "input": "Vaswani A",
+      "success": true,
+      "time": 655
+    },
+    {
+      "api": "datacite",
+      "inputType": "title",
+      "input": "Attention is all you need",
+      "success": true,
+      "time": 3795
+    },
+    {
+      "api": "datacite",
+      "inputType": "doi",
+      "input": "10.48550/arXiv.1706.03762",
+      "success": true,
+      "time": 268
+    },
+    {
+      "api": "datacite",
+      "inputType": "author",
+      "input": "Vaswani A",
+      "success": true,
+      "time": 2124
+    },
+    {
+      "api": "unpaywall",
+      "inputType": "title",
+      "input": "Attention is all you need",
+      "success": false,
+      "time": 0
+    },
+    {
+      "api": "unpaywall",
+      "inputType": "doi",
+      "input": "10.48550/arXiv.1706.03762",
+      "success": false,
+      "time": 532
+    },
+    {
+      "api": "unpaywall",
+      "inputType": "author",
+      "input": "Vaswani A",
+      "success": false,
+      "time": 0
+    },
+    {
+      "api": "doaj",
+      "inputType": "title",
+      "input": "Attention is all you need",
+      "success": true,
+      "time": 384
+    },
+    {
+      "api": "doaj",
+      "inputType": "doi",
+      "input": "10.48550/arXiv.1706.03762",
+      "success": false,
+      "time": 265
+    },
+    {
+      "api": "doaj",
+      "inputType": "author",
+      "input": "Vaswani A",
+      "success": true,
+      "time": 270
+    },
+    {
+      "api": "orcid",
+      "inputType": "title",
+      "input": "Attention is all you need",
+      "success": false,
+      "time": 0
+    },
+    {
+      "api": "orcid",
+      "inputType": "doi",
+      "input": "10.48550/arXiv.1706.03762",
+      "success": false,
+      "time": 0
+    },
+    {
+      "api": "orcid",
+      "inputType": "author",
+      "input": "Vaswani A",
+      "success": true,
+      "time": 1496
+    },
+    {
+      "api": "core",
+      "inputType": "title",
+      "input": "Attention is all you need",
+      "success": true,
+      "time": 8632
+    },
+    {
+      "api": "core",
+      "inputType": "doi",
+      "input": "10.48550/arXiv.1706.03762",
+      "success": true,
+      "time": 912
+    },
+    {
+      "api": "core",
+      "inputType": "author",
+      "input": "Vaswani A",
+      "success": true,
+      "time": 987
+    }
+  ]
+}

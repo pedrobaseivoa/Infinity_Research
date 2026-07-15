@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use this software in your research, please cite it as below."
+title: "Infinity Research: automated, reproducible structured extraction from scientific PDFs"
+abstract: >-
+  Infinity Research is an open-source (AGPL-3.0), bring-your-own-key tool for
+  turning scientific-paper PDFs into validated, structured datasets. It combines
+  multi-model consensus extraction, programmatic confidence scoring and
+  11-API bibliographic enrichment with per-field provenance, aimed at
+  systematic reviews and evidence synthesis.
+type: software
+authors:
+  - given-names: Pedro
+    family-names: "<FILL IN YOUR FAMILY NAME>"
+    # orcid: "https://orcid.org/0000-0000-0000-0000"  # optional, recommended
+license: AGPL-3.0-or-later
+repository-code: "<YOUR_REPO_URL>"
+keywords:
+  - systematic review
+  - meta-analysis
+  - evidence synthesis
+  - large language models
+  - data extraction
+  - reproducibility
+version: "0.1.0"
+date-released: "2026-07-15"
