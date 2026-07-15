@@ -61,7 +61,7 @@ export async function runPhase4(
     try {
         const prompt = getPhase4Prompt(phase3.title)
 
-        // Call all 4 models in parallel
+        // Call all models in parallel
         const results = await Promise.allSettled(
             MODELS.map(model =>
                 callOpenRouter({

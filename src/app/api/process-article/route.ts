@@ -857,17 +857,17 @@ CONSOLIDATION RULES:
 
 CRITICAL FORMATTING RULE — CLEAN DATA ONLY:
 - The content fields (methodology, sample_size, population, intervention, control, primary_outcomes, secondary_outcomes, main_results, limitations, conclusions, ethical_considerations) must contain ONLY the final consolidated scientific data.
-- NEVER prefix or embed agreement ratios like "4/4 agree", "3/4 agree", or any agreement annotation in the content fields.
+- NEVER prefix or embed agreement ratios like "5/5 agree", "4/5 agree", or any agreement annotation in the content fields.
 - Agreement ratios and model comparison details go EXCLUSIVELY in the "field_agreement" object.
-- Example of WRONG: "4/4 agree. The study used a randomized design..."
-- Example of CORRECT: "The study used a randomized design..." (with field_agreement.methodology = "Full agreement (4/4)")
+- Example of WRONG: "5/5 agree. The study used a randomized design..."
+- Example of CORRECT: "The study used a randomized design..." (with field_agreement.methodology = "Full agreement (5/5)")
 
 FIELD_AGREEMENT — MANDATORY (do NOT leave empty):
 You MUST fill "field_agreement" with one entry for EACH of these keys: methodology, sample_size, population, intervention, control, primary_outcomes, secondary_outcomes, main_results, limitations, conclusions, ethical_considerations.
 - Compare the SPECIFIC NUMBERS and FACTS across models, not just general themes.
 - "Full agreement (N/N)" ONLY if all models report the same key numbers and conclusions.
-- If models report different numbers (e.g. Model 1 says N=46, Model 2 says N=50), report "3/4 agree on N=46, Model 2 reports N=50".
-- If models omit a detail others include, that is NOT full agreement. Report "3/4 provide detail, 1/4 omits".
+- If models report different numbers (e.g. Model 1 says N=46, Model 2 says N=50), report "4/5 agree on N=46, 1 model reports N=50".
+- If models omit a detail others include, that is NOT full agreement. Report "4/5 provide detail, 1/5 omits".
 - Always mention specific discrepancies, not just counts.
 
 STRUCTURED OUTCOMES — CONSOLIDATION:

@@ -32,7 +32,7 @@ It is **BYOK (Bring Your Own Key)** and **self-hosted**: you run your own instan
 
 Most "chat with your PDF" tools do **single-model** extraction and give you no way to gauge trust. Infinity Research is built around three ideas:
 
-1. **Multi-model consensus.** The core scientific extraction runs **four independent models from four different providers in parallel** (Google, DeepSeek, OpenAI, xAI). A programmatic confidence score then measures how much the models *agree on the actual facts* — percentages, p-values, confidence intervals, sample sizes, AUC/accuracy. Disagreement is surfaced, not hidden.
+1. **Multi-model consensus.** The core scientific extraction runs **five independent models from five different providers in parallel** (Google, DeepSeek, OpenAI, xAI, Meta). A programmatic confidence score then measures how much the models *agree on the actual facts* — percentages, p-values, confidence intervals, sample sizes, AUC/accuracy. Disagreement is surfaced, not hidden.
 2. **Provenance.** Bibliographic metadata is cross-checked against **11 public scholarly APIs**, and the final record documents *where each field came from* (`vision | crossref | openalex`) and which conflicting sources were rejected and why.
 3. **Meta-analysis-ready output.** Beyond prose summaries, the pipeline extracts **structured outcomes** (arms, n, mean/SD, events/total, effect sizes, CIs, p-values) as rows you can drop into a meta-analysis.
 
@@ -53,11 +53,12 @@ flowchart TD
     P2 --> P3["Phase 3 · Consensus + Provenance<br/>anthropic/claude-haiku-4.5"]
     P3 --> P4["Phase 4 · Multi-model extraction (parallel)"]
 
-    subgraph P4M ["4 independent providers"]
+    subgraph P4M ["5 independent providers"]
         M1["google/gemini-3-flash"]
         M2["deepseek/deepseek-v3.2"]
         M3["openai/gpt-4.1-mini"]
         M4["x-ai/grok-4.3"]
+        M5["meta-llama/llama-4-maverick"]
     end
     P4 --> P4M --> CS["Confidence scoring<br/>fact agreement · code"]
 
@@ -85,7 +86,7 @@ Everything for one article lives in a single `articles` row in Postgres; each ph
 | 1 | **Metadata extraction** | `openai/gpt-4o` | PDF | title, authors, DOI, abstract, journal, year, keywords, **study type**, has_tables/figures, funding, conflicts, registration № |
 | 2 | **Bibliographic enrichment** | — (11 HTTP APIs, parallel) | title/DOI | raw records from each API + per-API success + which fields each contributed |
 | 3 | **Consensus + provenance** | `anthropic/claude-haiku-4.5` | P1 + P2 (text) | golden metadata record with `field_sources`, `conflicts_resolved`, `rejected_sources` |
-| 4 | **Multi-model extraction** | `google/gemini-3-flash-preview` · `deepseek/deepseek-v3.2` · `openai/gpt-4.1-mini` · `x-ai/grok-4.3` | PDF | 4 independent extractions: methodology, population, intervention/control, primary/secondary outcomes, limitations, conclusions, **structured outcomes** |
+| 4 | **Multi-model extraction** | `google/gemini-3-flash-preview` · `deepseek/deepseek-v3.2` · `openai/gpt-4.1-mini` · `x-ai/grok-4.3` · `meta-llama/llama-4-maverick` | PDF | 5 independent extractions: methodology, population, intervention/control, primary/secondary outcomes, limitations, conclusions, **structured outcomes** |
 | – | **Confidence scoring** | — (deterministic code) | P4 | per-field agreement score based on matching quantitative facts across the 4 models |
 | 5 | **Visual extraction** *(only if tables/figures exist)* | `google/gemini-3.1-pro-preview` | PDF | actual data values from figures & tables |
 | 6 | **Scientific consolidation** | `google/gemini-3-flash-preview` | P4 + P5 (text) | single consolidated record + per-field agreement notes |
@@ -99,7 +100,7 @@ Everything for one article lives in a single `articles` row in Postgres; each ph
 
 ## Confidence scoring & provenance
 
-- **Fact-based agreement** — after Phase 4, regexes pull quantitative facts (`%`, `p<0.05`, `95% CI`, `n=…`, `AUC/accuracy/sensitivity`) from each of the 4 model outputs and compute, per field, how many models report the same facts. This is a *measurement of inter-model agreement*, not a model's self-reported confidence.
+- **Fact-based agreement** — after Phase 4, regexes pull quantitative facts (`%`, `p<0.05`, `95% CI`, `n=…`, `AUC/accuracy/sensitivity`) from each of the 5 model outputs and compute, per field, how many models report the same facts. This is a *measurement of inter-model agreement*, not a model's self-reported confidence.
 - **Provenance** — Phase 3 records, for every metadata field, which sources confirmed it (e.g. `"doi": "vision|crossref|openalex"`), the conflicts it resolved (chosen value + reason), and the sources it rejected (with reason). This is what makes the output auditable for a systematic review.
 
 ---

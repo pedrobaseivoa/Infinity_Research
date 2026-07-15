@@ -213,7 +213,7 @@ export const PHASE6_SCHEMA = {
           type: 'object',
           properties: {
             field: { type: 'string', description: 'Field name: methodology, sample_size, population, intervention, control, primary_outcomes, secondary_outcomes, main_results, limitations, conclusions, or ethical_considerations' },
-            agreement: { type: 'string', description: 'Agreement summary, e.g. "Full agreement (4/4)" or "3/4 agree on N=20, 1/4 reports N=22"' },
+            agreement: { type: 'string', description: 'Agreement summary, e.g. "Full agreement (5/5)" or "4/5 agree on N=20, 1/5 reports N=22"' },
           },
           required: ['field', 'agreement'],
           additionalProperties: false,
@@ -253,7 +253,7 @@ export const PHASE6_SCHEMA = {
             direction_favorable: { type: 'string', enum: ['higher', 'lower', 'neutral'] },
             source: { type: 'string' },
             models_reporting: { type: 'integer', description: 'How many models reported this outcome' },
-            agreement_note: { type: 'string', description: 'Note on agreement, e.g. "4/4 agree on Dice=0.442"' },
+            agreement_note: { type: 'string', description: 'Note on agreement, e.g. "5/5 agree on Dice=0.442"' },
           },
           required: ['name', 'comparison_type', 'category', 'type', 'timepoint', 'arm1_label', 'arm1_n', 'arm1_mean', 'arm1_sd', 'arm1_events', 'arm1_total', 'arm2_label', 'arm2_n', 'arm2_mean', 'arm2_sd', 'arm2_events', 'arm2_total', 'proportion', 'se_reported', 'correlation_pre_post', 'effect_measure', 'effect_size', 'ci_lower', 'ci_upper', 'p_value', 'direction_favorable', 'source', 'models_reporting', 'agreement_note'],
           additionalProperties: false,

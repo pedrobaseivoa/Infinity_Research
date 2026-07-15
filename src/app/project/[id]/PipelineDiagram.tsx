@@ -129,7 +129,7 @@ export default function PipelineDiagram() {
                         </div>
                         <p className="text-sm text-gray-600 mb-3">Consolidate Phase 4 + Phase 5 into unified scientific record.</p>
                         <div className="text-xs text-gray-500 space-y-1">
-                            <div><span className="font-medium">Input:</span> 4 model outputs + visual data</div>
+                            <div><span className="font-medium">Input:</span> model outputs + visual data</div>
                             <div><span className="font-medium">Output:</span> Complete scientific + visual JSON</div>
                         </div>
                     </div>

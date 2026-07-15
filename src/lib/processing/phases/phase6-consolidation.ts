@@ -12,7 +12,7 @@ const getPhase6Prompt = (phase4: Phase4Output, phase5: Phase5Output) => {
     return `You are a Principal Investigator consolidating data from multiple AI analysts.
 
 INPUTS:
-1. TEXT EXTRACTIONS (from 4 models):
+1. TEXT EXTRACTIONS (from ${extractions.length} models):
 ${extractions.map((e, i) => `Model ${i + 1} (${e.model}):\n${JSON.stringify(e.extraction, null, 2)}`).join('\n\n')}
 
 2. VISUAL DATA (Figures & Tables):

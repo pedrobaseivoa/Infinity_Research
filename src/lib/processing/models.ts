@@ -27,9 +27,10 @@ export const PIPELINE_CONFIG = {
         'deepseek/deepseek-v3.2',
         'openai/gpt-4.1-mini',
         'x-ai/grok-4.3',
+        'meta-llama/llama-4-maverick',
       ] as const,
       requiresPdf: true,
-      description: 'Parallel scientific extraction by 4 independent models',
+      description: 'Parallel scientific extraction by 5 independent models',
     },
     5: {
       name: 'Visual Extraction',

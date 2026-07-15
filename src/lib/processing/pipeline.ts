@@ -79,7 +79,7 @@ export async function processArticle(options: ProcessArticleOptions): Promise<Pr
         totalDuration += p3.duration_ms
         totalTokens += (p3.usage?.prompt_tokens || 0) + (p3.usage?.completion_tokens || 0)
 
-        console.log('Phase 4: Multi-Model Extraction (4 Models)...')
+        console.log('Phase 4: Multi-Model Extraction...')
         const p4 = await runPhase4(ctx, p3.output)
         totalCost += p4.usage?.total_cost || 0
         totalDuration += p4.duration_ms
